@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="kd">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xxj aw</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            transition: background 0.5s;
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+        }
+        .intro {
+            text-align: center;
+            margin: 20px;
+            width: 90%;
+        }
+        .intro h1, .intro h3 {
+            margin: 0;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 220px;
+            text-align: center;
+            color: #fff;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+        }
+        .card a {
+            text-decoration: none;
+            color: #4b6cb7;
+            font-weight: bold;
+            display: block;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .card a:hover {
+            color: #182848;
+        }
+        .card i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px;
+            color: #fff;
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+            transition: background 0.5s;
+        }
+        .color-picker {
+            margin: 20px;
+            text-align: center;
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .color-picker label {
+            margin-right: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
+        .color-picker input {
+            margin-right: 20px;
+        }
+        .add-card-button {
+            font-size: 35px;
+            color: #fff;
+            cursor: pointer;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .add-card-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        .custom-card-form {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: rgba(0, 0, 0, 1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .custom-card-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .custom-card-form button {
+            padding: 10px;
+            background: #4b6cb7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .custom-card-form button:hover {
+            background: #182848;
+        }
+        .about-us-icon {
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .about-us-icon:hover {
+            color: #ddd;
+        }
+        .about-us-info {
+            display: none;
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background: rgba(5, 2, 0, 0.7);
+            padding: 20px;
+            border-radius: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro">
+        <div class="about-us-icon">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <h1>xxj aw</h1>
+        <h3>欢迎来到可多工作室制作的网站！</h3>
+    </div>
+
+    <div class="about-us-info" id="about-us-info">
+        <p>这，是可多工作室开发的帮助学习机用户访问网站的网站（？</p>
+        <p>xxj aw中xxj是学习机，aw是访问网站的首字母</p>
+         <a href="https://jsj.top/f/MTXVpG"><h3>xxj aw 建议反馈</h3></a>
+
+    </div>
+
+    <div class="color-picker">
+        <label for="bg-color">背景色:</label>
+        <input type="color" id="bg-color" value="#4b6cb7">
+        <label for="card-color">卡片色:</label>
+        <input type="color" id="card-color" value="#444">
+    </div>
+
+    <div class="card-container" id="card-container">
+        <!-- 初始卡片将在这里显示 -->
+    </div>
+
+    <div class="add-card-button" id="add-card-btn">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <div class="custom-card-form" id="custom-card-form">
+        <input type="text" id="custom-text" placeholder="输入名称">
+        <input type="text" id="custom-link" placeholder="输入链接">
+        <button id="submit-card">添加卡片</button>
+    </div>
+
+    <footer id="footer">
+        <h3>版本：v1.1.7 增加了更多网站   增加自定义网站功能   广告全out</h3>
+        <p>© 2024   版权归 可多工作室 所有</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardData = JSON.parse(localStorage.getItem('cards')) || [
+                { href: 'https://www.baidu.com', icon: 'fas fa-search', text: '百度' },
+                { href: 'https://www.taobao.com', icon: 'fas fa-shopping-cart', text: '淘宝' },
+                { href: 'https://www.douyin.com/user/self', icon: 'fas fa-video', text: '抖音' },
+                { href: 'https://www.weibo.com', icon: 'fab fa-weibo', text: '微博' },
+                { href: 'https://www.pinduoduo.com/', icon: 'fab fa-github', text: '拼多多' },
+                { href: 'https://lcim.guozhufeng.com', icon: 'fas fa-link', text: '凌CIM' },
+                { href: 'https://www.ccw.site/student/65d423c0a65f1229b0d80fb0', icon: 'fab fa-bilibili', text: 'ccw' },
+                { href: 'https://space.bilibili.com/3537115203767153', icon: 'fab fa-bilibili', text: 'bilibili' },
+                { href: 'https://code.xueersi.com', icon: 'fas fa-desktop', text: 'c站电脑端' },
+                { href: 'https://kdgzswsz.github.io/', icon: 'fas fa-globe', text: '可多工作室官网' },
+                { href: 'https://code.xueersi.com/class/list', icon: 'fas fa-book', text: '学而思学习中心' },
+                { href: 'https://neal.fun/design-the-next-iphone/', icon: 'fas fa-apple', text: '设计你的iPhone！' },
+                { href: 'https://poki.com/zh#utm_source=redirect-en-zh', icon: 'fas fa-gamepad', text: 'poki' },
+                { href: 'https://www.kuaishou.com/new-reco', icon: 'fas fa-camera', text: '快手' },
+                { href: 'https://www.geogebra.org/scientific?lang=zh_CN', icon: 'fas fa-calculator', text: '科学计算器' },
+                { href: 'https://fanyi.baidu.com/mtpe-individual/multimodal#/', icon: 'fas fa-language', text: '百度翻译' },
+                { href: 'https://www.tutieshi.com/mosaic/', icon: 'fas fa-magic', text: '打码神器' },
+                { href: 'https://pvp.qq.com', icon: 'fas fa-trophy', text: '王者荣誉' },
+                { href: 'https://youku.com/', icon: 'fas fa-video', text: '优酷' },
+                { href: 'https://pan.baidu.com/disk/main#/index?category=all', icon: 'fas fa-cloud', text: '百度网盘' },
+                { href: 'https://mc.js.cool/', icon: 'fas fa-cube', text: 'MC（触碰版）' },
+                { href: 'https://cn.bing.com/', icon: 'fas fa-search', text: '必应' },
+                { href: 'https://code.xueersi.com/tools/help', icon: 'fas fa-paw', text: '学而思新人必看' },
+                { href: 'https://www.xiaohongshu.com/explore', icon: 'fas fa-heart', text: '小红书' },
+                { href: 'https://ys.mihoyo.com/', icon: 'fas fa-gamepad', text: '原神' },
+                { href: 'https://cg.163.com/#/mobile', icon: 'fas fa-cloud', text: '网易云游戏' },
+                { href: 'https://www.youtube.com', icon: 'fab fa-youtube', text: 'YouTube' },
+                { href: 'https://hao.qq.com', icon: 'fab fa-qq', text: '腾讯网' },
+                { href: 'https://www.identityvgame.com', icon: 'fab fa-google-play', text: '第五人格' },
+                { href: 'https://www.qimao.com', icon: 'fas fa-book', text: '七猫' },
+                { href: 'https://fanqienovel.com', icon: 'fas fa-book', text: '番茄小说' },
+                { href: 'https://www.sina.com.cn', icon: 'fab fa-twitter', text: '新浪新闻' },
+                { href: 'https://www.kugou.com', icon: 'fas fa-music', text: '酷狗音乐' },
+            ];
+
+            const cardContainer = document.getElementById('card-container');
+            const bgColorPicker = document.getElementById('bg-color');
+            const cardColorPicker = document.getElementById('card-color');
+            const footer = document.getElementById('footer');
+            const addCardBtn = document.getElementById('add-card-btn');
+            const customCardForm = document.getElementById('custom-card-form');
+            const submitCardBtn = document.getElementById('submit-card');
+            const aboutUsIcon = document.querySelector('.about-us-icon');
+            const aboutUsInfo = document.getElementById('about-us-info');
+
+            // 初始化卡片
+            function initializeCards() {
+                cardContainer.innerHTML = ''; // 清空容器
+                cardData.forEach(data => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `<a href="${data.href}" target="_blank"><i class="${data.icon}"></i>${data.text}</a>`;
+                    cardContainer.appendChild(card);
+                });
+            }
+
+            initializeCards(); // 页面加载时初始化卡片
+
+            // 显示或隐藏自定义卡片表单
+            addCardBtn.addEventListener('click', () => {
+                customCardForm.style.display = customCardForm.style.display === 'none' ? 'block' : 'none';
+            });
+
+            // 更改背景色和卡片色
+            bgColorPicker.addEventListener('input', (e) => {
+                document.body.style.background = `linear-gradient(135deg, ${e.target.value}, #182848)`;
+                footer.style.background = `linear-gradient(135deg, ${e.target.value}, #182848)`;
+            });
+
+            cardColorPicker.addEventListener('input', (e) => {
+                document.querySelectorAll('.card').forEach(card => {
+                    card.style.backgroundColor = e.target.value;
+                });
+            });
+
+            // 添加新卡片
+            submitCardBtn.addEventListener('click', () => {
+                const customText = document.getElementById('custom-text').value;
+                const customLink = document.getElementById('custom-link').value;
+
+                if (customText && customLink) {
+                    const newCard = {
+                        href: customLink,
+                        icon: 'fas fa-custom',
+                        text: customText
+                    };
+
+                    cardData.push(newCard); // 添加到卡片数据中
+                    localStorage.setItem('cards', JSON.stringify(cardData)); // 保存到 localStorage
+                    initializeCards(); // 重新初始化卡片
+
+                    customCardForm.style.display = 'none'; // 隐藏表单
+                }
+            });
+
+            // 关于我们信息显示
+            aboutUsIcon.addEventListener('click', () => {
+                aboutUsInfo.style.display = aboutUsInfo.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
